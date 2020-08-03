@@ -3,7 +3,6 @@ var router = express.Router();
 const firebase = require("firebase");
 
 /* ROUTER FOR TESTING PURPOSE ONLY */
-
 router.get('/', function (req, res, next) {
   const phoneReference = firebase.database().ref("/Phones/");
   phoneReference.on("value", function (snapshot) {
