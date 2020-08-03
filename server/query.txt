@@ -1,0 +1,37 @@
+===GET ALL DATA FROM FIREBASE IN GraphiQL===
+
+{
+  phones{
+    id,
+    name,
+    phone
+  }
+}
+
+===POST DATA TO FIREBASE IN GraphiQL===
+
+mutation{
+  addContact(id: "1596463272775", name: "bakti", phone: "087718611816"){
+  	id,
+    name,
+    phone
+  }
+}
+
+===UPDATE DATA FIREBASE IN GraphiQL===
+
+mutation{
+  updateContact(id: "1596463272775", name: "super", phone: "087710802563"){
+  	id,
+    name,
+    phone
+  }
+}
+
+===DELETE DATA FROM FIREBASE IN GraphiQL===
+
+mutation{
+  deleteContact(id: "1596463272775"){
+  	id,
+  }
+}
