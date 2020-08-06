@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import { postContact } from '../actions'
 
 class AddForm extends Component {
     constructor(props) {
@@ -9,6 +10,7 @@ class AddForm extends Component {
         // This binding is necessary to make `this` work in the callback
         this.handleClick = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleClick() {
@@ -22,6 +24,12 @@ class AddForm extends Component {
         this.setState({ [event.target.name]: event.target.value })
     }
 
+    handleSubmit(event) {
+        event.preventDefault();
+        this.props.postContact(this.state.name, this.state.phone)
+        this.setState({ name: '', phone: '' })
+    }
+
     render() {
         return (
             <div>
@@ -31,7 +39,7 @@ class AddForm extends Component {
 
                 <div className="collapse mb-3" id="add-collapse">
                     <div className="card card-body">
-                        <form >
+                        <form onSubmit={this.handleSubmit} >
                             <div className="form-group">
                                 <div className="row">
                                     <div className="col">
@@ -76,7 +84,11 @@ class AddForm extends Component {
     }
 }
 
+const mapDispatchToProps = dispatch => ({
+    postContact: (name, phone) => dispatch(postContact(name, phone))
+})
+
 export default connect(
-    // mapStateToProps,
-    // mapDispatchToProps
+    null,
+    mapDispatchToProps
 )(AddForm)

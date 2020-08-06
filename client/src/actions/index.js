@@ -41,3 +41,26 @@ export const loadContacts = () => {
             })
     }
 }
+//end load data
+
+//start post data
+
+
+export const postContactRedux = (id, name, phone) => ({
+    type: 'POST_CONTACT',
+    id,
+    name,
+    phone
+})
+
+export const postContact = (name, phone) => {
+    console.log(name, phone)
+    const id = new Date().getTime();
+
+
+
+
+    return dispath => {
+        dispath(postContactRedux(id, name, phone));
+    }
+}

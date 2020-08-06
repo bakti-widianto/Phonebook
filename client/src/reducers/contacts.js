@@ -9,10 +9,10 @@ const initState = {
 
 
 const contacts = (state = initState, action) => {
-
+    console.log(action.type)
     switch (action.type) {
+
         case 'LOAD_CONTACT_SUCCESS':
-            console.log(action)
             return {
                 ...state,
                 contacts: action.phones.map((item) => {
@@ -20,7 +20,19 @@ const contacts = (state = initState, action) => {
                     return item;
                 }),
             }
-
+        case 'POST_CONTACT':
+            return {
+                ...state,
+                contacts: [
+                    ...state.contacts,
+                    {
+                        id: action.id,
+                        name: action.name,
+                        phone: action.phone,
+                        sent: true
+                    }
+                ]
+            }
 
         case 'LOAD_CONTACT_FAILURE':
         default:
