@@ -6,6 +6,7 @@ const Contact = (props) => {
          <td >{props.index}</td>
          <td >{props.name}</td>
          <td >{props.phone}</td>
+         <td ></td>
       </tr>
 
    )

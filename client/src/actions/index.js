@@ -32,7 +32,7 @@ export const loadContacts = () => {
             query: phonesQuery
         })
             .then(function (response) {
-                console.log(response.data.phones)
+                // console.log(response.data.phones)
                 dispath(loadContactsSuccess(response.data.phones))
             })
             .catch(function (error) {
