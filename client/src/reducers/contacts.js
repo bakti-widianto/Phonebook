@@ -20,6 +20,7 @@ const contacts = (state = initState, action) => {
                     return item;
                 }),
             }
+
         case 'POST_CONTACT':
             return {
                 ...state,
@@ -33,6 +34,28 @@ const contacts = (state = initState, action) => {
                     }
                 ]
             }
+
+        case 'POST_CONTACT_SUCCESS':
+            return {
+                ...state,
+                contacts: state.contacts.map(item => {
+                    item.sent = true;
+                    return item
+                })
+            }
+
+        case 'POST_CONTACT_FAILURE':
+            return {
+                ...state,
+                contacts: state.contacts.map(item => {
+                    if (item.id === action.id) {
+                        item.sent = false;
+                    }
+                    return item
+                })
+            }
+
+
 
         case 'LOAD_CONTACT_FAILURE':
         default:
