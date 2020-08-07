@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
-import { deleteContact } from '../actions';
+import { deleteContact, resendContact } from '../actions';
 import Contact from '../components/Contact';
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 
    // //    onUpdateContact: () => dispatch(onUpdateContact(ownProps.id)),
-   onDelete: () => dispatch(deleteContact(ownProps.id))
-   // onResend: () => dispatch(resendContact(ownProps.id, ownProps.name, ownProps.phone))
+   onDelete: () => dispatch(deleteContact(ownProps.id)),
+   onResend: () => dispatch(resendContact(ownProps.id, ownProps.name, ownProps.phone))
 })
 
 export default connect(

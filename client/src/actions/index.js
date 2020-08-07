@@ -103,6 +103,9 @@ export const postContact = (name, phone) => {
     }
 }
 //end post
+
+
+
 export const deleteContactSuccess = (id) => ({
     type: 'DELETE_CONTACT_SUCCESS', id
 })
@@ -161,4 +164,46 @@ export const deleteContact = (id) => {
         })
     }
 
+}
+
+
+export const resendContact = (id, name, phone) => {
+    console.log(id, name, phone)
+    const addQuery = gql`
+    mutation addContact($id: ID!, $name: String!, $phone: String!) {
+        addContact(id: $id, name: $name, phone: $phone) {
+            id
+            name
+            phone
+        }
+    }`;
+
+    return dispath => {
+        dispath(postContactRedux(id, name, phone));
+
+        return client.mutate({
+            mutation: addQuery,
+            variables: {
+                id,
+                name,
+                phone
+            }
+        })
+            .then(function (response) {
+                Swal.fire(
+                    'Success!',
+                    'Contact added successfully!',
+                    'success'
+                )
+                dispath(postContactSuccess(response.data.addContact));
+            })
+            .catch(function (error) {
+                Swal.fire(
+                    'Error!',
+                    'connection problem try again later',
+                    'error'
+                )
+                dispath(postContactFailure(id));
+            })
+    }
 }

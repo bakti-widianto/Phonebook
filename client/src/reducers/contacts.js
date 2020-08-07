@@ -61,6 +61,18 @@ const contacts = (state = initState, action) => {
                 contacts: state.contacts.filter(item => item.id !== action.id)
             }
 
+
+
+
+
+
+
+
+
+
+
+
+            
         case 'DELETE_CONTACT_SUCCESS':
         case 'DELETE_CONTACT_FAILURE':
         case 'LOAD_CONTACT_FAILURE':
