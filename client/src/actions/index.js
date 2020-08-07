@@ -102,3 +102,36 @@ export const postContact = (name, phone) => {
             })
     }
 }
+//end post
+
+
+
+export const deleteContactRedux = (id) => ({
+    type: 'DELETE_CONTACT', id
+})
+
+export const deleteContact = (id) => {
+    console.log(id)
+    //     const deleteQuery = gql`
+    //    mutation deleteContact($id: ID!){
+    //       deleteContact(id: $id){
+    //          id
+    //       }
+    //    }`;
+    return dispatch => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+                dispatch(deleteContactRedux(id))
+            }
+        })
+    }
+
+}

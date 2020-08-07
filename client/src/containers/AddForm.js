@@ -39,47 +39,46 @@ class AddForm extends Component {
 
                 <div className="collapse mb-3" id="add-collapse">
                     <div className="card card-body">
-                        <form onSubmit={this.handleSubmit} >
-                            <div className="form-group">
-                                <div className="row">
-                                    <div className="col">
-                                        <label><b>Name</b></label>
-                                        <input
-                                            type="text"
-                                            name="name"
-                                            className="form-control"
-                                            placeholder="Input contact name..."
-                                            value={this.state.name}
-                                            required={true}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                    <div className="col">
-                                        <label><b>Phone</b></label>
-                                        <input
-                                            type="text"
-                                            name="phone"
-                                            placeholder="Input phone number..."
-                                            value={this.state.phone}
-                                            className="form-control"
-                                            required={true}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
+                        <form onSubmit={this.handleSubmit}>
+                            <div className="row">
+                                <div className="col-3">
+                                    <h3>
+                                        <i className="fas fa-address-card"> Add New Contact: </i>
+                                    </h3>
                                 </div>
-                            </div>
+                                <div className="col-4">
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        className="form-control"
+                                        placeholder="Input contact name..."
+                                        value={this.state.name}
+                                        required={true}
+                                        onChange={this.handleChange}
+                                    />
+                                </div>
+                                <div className="col-4">
+                                    <input
+                                        type="text"
+                                        name="phone"
+                                        placeholder="Input phone number..."
+                                        value={this.state.phone}
+                                        className="form-control"
+                                        required={true}
+                                        onChange={this.handleChange}
+                                    />
+                                </div>
+                                <button
+                                    className="btn btn-secondary"
 
-                            <div className="row d-flex justify-content-end" >
-                                <button type="submit" className="btn btn-success">
-                                    <i className="fas fa-plus"> Save</i>
-                                </button>
+                                >save</button>
                             </div>
                         </form>
 
 
                     </div>
                 </div>
-            </div>
+            </div >
         )
     }
 }
