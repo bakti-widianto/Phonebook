@@ -17,6 +17,7 @@ const contacts = (state = initState, action) => {
                 ...state,
                 contacts: action.phones.map((item) => {
                     item.sent = true;
+                    item.isEditing = false;
                     return item;
                 }),
             }
@@ -61,6 +62,27 @@ const contacts = (state = initState, action) => {
                 contacts: state.contacts.filter(item => item.id !== action.id)
             }
 
+        case 'ON_UPDATE_CONTACT':
+            return {
+                ...state,
+                contacts: state.contacts.map((item) => {
+                    if (item.id === action.id) {
+                        item.isEditing = true;
+                    }
+                    return item
+                })
+            }
+
+        case 'OFF_UPDATE_CONTACT':
+            return {
+                ...state,
+                contacts: state.contacts.map((item) => {
+                    if (item.id === action.id) {
+                        item.isEditing = false;
+                    }
+                    return item
+                })
+            }
 
 
 
@@ -72,7 +94,7 @@ const contacts = (state = initState, action) => {
 
 
 
-            
+
         case 'DELETE_CONTACT_SUCCESS':
         case 'DELETE_CONTACT_FAILURE':
         case 'LOAD_CONTACT_FAILURE':

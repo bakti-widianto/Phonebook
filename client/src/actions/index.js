@@ -207,3 +207,14 @@ export const resendContact = (id, name, phone) => {
             })
     }
 }
+
+
+export const onUpdateContact = (id) => ({
+    type: 'ON_UPDATE_CONTACT',
+    id
+})
+
+export const offUpdateContact = (id) => ({
+    type: 'OFF_UPDATE_CONTACT',
+    id
+})
