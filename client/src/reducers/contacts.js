@@ -98,6 +98,27 @@ const contacts = (state = initState, action) => {
                 })
             }
 
+        case 'UPDATE_CONTACT_SUCCESS':
+            return {
+                ...state,
+                contacts: state.contacts.map(item => {
+                    item.sent = true;
+                    item.isEditing = false;
+                    return item
+                })
+            }
+
+        case 'UPDATE_CONTACT_FAILURE':
+            return {
+                ...state,
+                contacts: state.contacts.map(item => {
+                    if (item.id === action.id) {
+                        item.sent = false;
+                        item.isEditing = true;
+                    }
+                    return item
+                })
+            }
 
 
 
