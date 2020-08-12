@@ -219,6 +219,16 @@ export const offUpdateContact = (id) => ({
     id
 })
 
+const updateContactSuccess = (contact) => ({
+    type: 'UPDATE_CONTACT_SUCCESS',
+    contact
+})
+
+const updateContactFailure = (id) => ({
+    type: 'UPDATE_CONTACT_FAILURE',
+    id
+})
+
 const updateContactRedux = (id, name, phone) => ({
     type: 'UPDATE_CONTACT',
     id,
@@ -230,7 +240,46 @@ const updateContactRedux = (id, name, phone) => ({
 export const updateContact = (id, name, phone) => {
 
     return dispatch => {
-        console.log(id, name, phone)
+        // console.log(id, name, phone)
         dispatch(updateContactRedux(id, name, phone))
+
+        const updateQuery = gql`
+    mutation updateContact($id: ID!, $name: String!, $phone: String!) {
+        updateContact(id: $id, name: $name, phone: $phone ) {
+        id
+        name
+        phone
+        }
+    }`;
+
+        return client.mutate({
+            mutation: updateQuery,
+            variables: {
+                id,
+                name,
+                phone
+            }
+        })
+            .then(function (response) {
+                Swal.fire(
+                    'Success!',
+                    'Contact updated successfully!',
+                    'success'
+                )
+                dispatch(updateContactSuccess(response.data.updateContact))
+            })
+            .catch(function (error) {
+                Swal.fire(
+                    'Error!',
+                    'connection problem try again later',
+                    'error'
+                )
+                dispatch(updateContactFailure(id))
+            })
+
+
+
+
+
     }
 }

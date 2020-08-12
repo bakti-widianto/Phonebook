@@ -89,11 +89,10 @@ const contacts = (state = initState, action) => {
                 ...state,
                 contacts: state.contacts.map(item => {
                     if (item.id === action.id) {
-                        console.log('edit')
+                        // console.log('edit')
                         item.name = action.name
                         item.phone = action.phone
-                        console.log(item)
-
+                        // console.log(item)
                     }
                     return item
                 })
