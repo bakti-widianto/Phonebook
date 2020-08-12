@@ -218,3 +218,19 @@ export const offUpdateContact = (id) => ({
     type: 'OFF_UPDATE_CONTACT',
     id
 })
+
+const updateContactRedux = (id, name, phone) => ({
+    type: 'UPDATE_CONTACT',
+    id,
+    name,
+    phone
+})
+
+
+export const updateContact = (id, name, phone) => {
+
+    return dispatch => {
+        console.log(id, name, phone)
+        dispatch(updateContactRedux(id, name, phone))
+    }
+}

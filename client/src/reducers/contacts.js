@@ -84,7 +84,20 @@ const contacts = (state = initState, action) => {
                 })
             }
 
+        case 'UPDATE_CONTACT':
+            return {
+                ...state,
+                contacts: state.contacts.map(item => {
+                    if (item.id === action.id) {
+                        console.log('edit')
+                        item.name = action.name
+                        item.phone = action.phone
+                        console.log(item)
 
+                    }
+                    return item
+                })
+            }
 
 
 

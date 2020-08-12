@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { offUpdateContact } from '../actions/index'
+import { offUpdateContact, updateContact } from '../actions/index'
 
 class EditForm extends Component {
     constructor(props) {
@@ -12,12 +12,12 @@ class EditForm extends Component {
     }
 
     handleChange(event) {
-        console.log(event.target.name, event.target.value)
+        // console.log(event.target.name, event.target.value)
         this.setState({ [event.target.name]: event.target.value });
     }
 
     handleCancel() {
-        console.log('tombol cancel')
+        // console.log('tombol cancel')
         this.props.offUpdateContact()
     }
 
@@ -26,7 +26,7 @@ class EditForm extends Component {
         // console.log('tombol submit')
         // console.log(this.state.name, this.state.phone)
         if (this.state.name && this.state.phone) {
-            //   this.props.updateContact(this.state.name, this.state.phone)
+            this.props.updateContact(this.state.name, this.state.phone)
         } else {
             // swall
         }
@@ -67,7 +67,7 @@ class EditForm extends Component {
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     offUpdateContact: () => dispatch(offUpdateContact(ownProps.id)),
-    //     updateContact: (name, phone) => dispatch(updateContact(ownProps.id, name, phone))
+    updateContact: (name, phone) => dispatch(updateContact(ownProps.id, name, phone))
 })
 
 export default connect(
