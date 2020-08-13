@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { searchContacts, loadContacts, onSearch } from '../actions';
+import { searchContacts } from '../actions';
 
 class SearchForm extends Component {
 
@@ -8,22 +8,23 @@ class SearchForm extends Component {
         super(props);
         this.state = { name: '', phone: '' }
         this.handleChangeName = this.handleChangeName.bind(this);
-          this.handleChangePhone = this.handleChangePhone.bind(this);
+        this.handleChangePhone = this.handleChangePhone.bind(this);
         //   this.handleReset = this.handleReset.bind(this);
     }
 
     handleChangeName(event) {
-        //   let { phone } = this.state
+        let { phone } = this.state
+        console.log(phone)
         console.log(event.target.value)
         this.setState({ name: event.target.value })
-        //   this.props.searchContacts(event.target.value, phone)
+        this.props.searchContacts(event.target.value, phone)
         //   this.props.onSearch({ name: event.target.value, phone: phone })
     }
 
     handleChangePhone(event) {
         //   let { name } = this.state
         console.log(event.target.value)
-        this.setState({ phone: event.target.value })
+        // this.setState({ phone: event.target.value })
         //   this.props.searchContacts(name, event.target.value)
         //   this.props.onSearch({ name: name, phone: event.target.value })
     }
@@ -82,13 +83,13 @@ class SearchForm extends Component {
 //    filterPhone: state.contacts.filterPhone
 // })
 
-// const mapDispatchToProps = dispatch => ({
-//    searchContacts: (name, phone, offset, limit) => dispatch(searchContacts(name, phone, offset = 0, limit = 5)),
-//    loadContacts: () => dispatch(loadContacts()),
-//    onSearch: (filter) => dispatch(onSearch(filter))
-// })
+const mapDispatchToProps = dispatch => ({
+    searchContacts: (name, phone) => dispatch(searchContacts(name, phone))
+    //    loadContacts: () => dispatch(loadContacts()),
+    //    onSearch: (filter) => dispatch(onSearch(filter))
+})
 
 export default connect(
     //    mapStateToProps,
-    //    mapDispatchToProps
+    mapDispatchToProps
 )(SearchForm)

@@ -283,3 +283,33 @@ export const updateContact = (id, name, phone) => {
 
     }
 }
+
+export const searchContacts = (name, phone) => {
+    const searchQuery = gql`
+    query
+        phones(
+            $name : String!, 
+            $phone: String!
+        ){
+            phones(
+                name : $name,
+                phone: $phone,
+            )
+        }`
+    return dispatch => {
+        return client.query({
+            query: searchQuery,
+            variables: {
+                name,
+                phone
+            }
+        })
+            .then(function (response) {
+                dispatch(console.log(response))
+            })
+            .catch(function (error) {
+                dispatch(console.log(error))
+            })
+    }
+
+}
