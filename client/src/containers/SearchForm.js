@@ -4,27 +4,29 @@ import { connect } from 'react-redux';
 
 class SearchForm extends Component {
 
-    //    constructor(props) {
-    //       super(props);
-    //       this.state = { name: '', phone: '' }
-    //       this.handleChangeName = this.handleChangeName.bind(this);
-    //       this.handleChangePhone = this.handleChangePhone.bind(this);
-    //       this.handleReset = this.handleReset.bind(this);
-    //    }
+    constructor(props) {
+        super(props);
+        this.state = { name: '', phone: '' }
+        this.handleChangeName = this.handleChangeName.bind(this);
+          this.handleChangePhone = this.handleChangePhone.bind(this);
+        //   this.handleReset = this.handleReset.bind(this);
+    }
 
-    //    handleChangeName(event) {
-    //       let { phone } = this.state
-    //       this.setState({ name: event.target.value })
-    //       this.props.searchContacts(event.target.value, phone)
-    //       this.props.onSearch({ name: event.target.value, phone: phone })
-    //    }
+    handleChangeName(event) {
+        //   let { phone } = this.state
+        console.log(event.target.value)
+        this.setState({ name: event.target.value })
+        //   this.props.searchContacts(event.target.value, phone)
+        //   this.props.onSearch({ name: event.target.value, phone: phone })
+    }
 
-    //    handleChangePhone(event) {
-    //       let { name } = this.state
-    //       this.setState({ phone: event.target.value })
-    //       this.props.searchContacts(name, event.target.value)
-    //       this.props.onSearch({ name: name, phone: event.target.value })
-    //    }
+    handleChangePhone(event) {
+        //   let { name } = this.state
+        console.log(event.target.value)
+        this.setState({ phone: event.target.value })
+        //   this.props.searchContacts(name, event.target.value)
+        //   this.props.onSearch({ name: name, phone: event.target.value })
+    }
 
     //    handleReset(event) {
     //       this.props.loadContacts()
@@ -48,6 +50,8 @@ class SearchForm extends Component {
                                     type="text"
                                     className="form-control"
                                     placeholder="Search by Name..."
+                                    value={this.state.name}
+                                    onChange={this.handleChangeName}
                                     required
                                 />
                             </div>
@@ -56,6 +60,8 @@ class SearchForm extends Component {
                                     type="text"
                                     className="form-control"
                                     placeholder="Search by Phone Number..."
+                                    value={this.state.phone}
+                                    onChange={this.handleChangePhone}
                                     required
                                 />
                             </div>
